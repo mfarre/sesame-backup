@@ -74,7 +74,7 @@ public class SesameServerBackupCreator {
 
 				final Calendar cal = Calendar.getInstance();
 				final File backupFile = new File(backupDir, URLEncoder.encode(
-						info.getId() + "_" + dateFormat.format(cal.getTime()) + ".trig", "US-ASCII"));
+						info.getId() + "_" + dateFormat.format(cal.getTime()) + ".trig", "UTF-8"));
 
 				executor.execute(new SesameRepositoryBackupCreator(info.getId(), backupFile, repository));
 			} catch (Exception e) {
