@@ -14,6 +14,36 @@
 		<sesame.version>2.7.1</sesame.version>
 	</properties>
 
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<artifactId>maven-assembly-plugin</artifactId>
+					<version>2.3</version>
+					<executions>
+						<execution>
+							<id>create-distribution</id>
+							<phase>package</phase> <!-- append to the packaging phase. -->
+							<goals>
+								<goal>single</goal> <!-- goals == mojos -->
+							</goals>
+							<configuration>
+								<archive>
+									<manifest>
+										<addClasspath>true</addClasspath>
+										<mainClass>com.insightng.admin.backup.BackupData</mainClass>
+									</manifest>
+								</archive>
+								<descriptors>
+									<descriptor>src/ main/assembly/distribution.xml</descriptor>
+								</descriptors>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
 	<dependencies>
 		<dependency>
 			<groupId>org.openrdf.sesame</groupId>
@@ -38,4 +68,6 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+
+
 </project>
