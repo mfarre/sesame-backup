@@ -15,34 +15,42 @@
 	</properties>
 
 	<build>
-		<pluginManagement>
-			<plugins>
-				<plugin>
-					<artifactId>maven-assembly-plugin</artifactId>
-					<version>2.3</version>
-					<executions>
-						<execution>
-							<id>create-distribution</id>
-							<phase>package</phase> <!-- append to the packaging phase. -->
-							<goals>
-								<goal>single</goal> <!-- goals == mojos -->
-							</goals>
-							<configuration>
-								<archive>
-									<manifest>
-										<addClasspath>true</addClasspath>
-										<mainClass>com.insightng.admin.backup.BackupData</mainClass>
-									</manifest>
-								</archive>
-								<descriptors>
-									<descriptor>src/ main/assembly/distribution.xml</descriptor>
-								</descriptors>
-							</configuration>
-						</execution>
-					</executions>
-				</plugin>
-			</plugins>
-		</pluginManagement>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<version>2.9</version>
+				<configuration>
+					<useProjectReferences>true</useProjectReferences>
+					<downloadSources>true</downloadSources>
+					<downloadJavadocs>true</downloadJavadocs>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>2.3</version>
+				<executions>
+					<execution>
+						<id>create-distribution</id>
+						<phase>package</phase> <!-- append to the packaging phase. -->
+						<goals>
+							<goal>single</goal> <!-- goals == mojos -->
+						</goals>
+						<configuration>
+							<archive>
+								<manifest>
+									<addClasspath>true</addClasspath>
+									<mainClass>com.insightng.admin.backup.BackupData</mainClass>
+								</manifest>
+							</archive>
+							<descriptors>
+								<descriptor>src/ main/assembly/distribution.xml</descriptor>
+							</descriptors>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
 	</build>
 	<dependencies>
 		<dependency>
@@ -68,6 +76,10 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-
-
+	
+	<scm>
+		<connection>scm:git:git@bitbucket.org:insightng-ondemand/sesame-backup.git</connection>
+		<developerConnection>scm:git:git@bitbucket.org:insightng-ondemand/sesame-backup.git</developerConnection>
+		<url>scm:git:git@bitbucket.org:insightng-ondemand/sesame-backup.git</url>
+	</scm>
 </project>
