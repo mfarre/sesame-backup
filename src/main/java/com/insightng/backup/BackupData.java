@@ -12,8 +12,6 @@ import java.util.Map;
 public class BackupData {
 
 	private static final String DEFAULT_SESAME_SERVER_URL = "http://localhost:8090/openrdf-sesame";
-	private static final String DEFAULT_SESAME_USERNAME = "in-platform";
-	private static final String DEFAULT_SESAME_PASSWORD = "0p3nUp";
 
 	private static final String URL_OPTION = "url";
 	private static final String USERNAME_OPTION = "username";
@@ -40,8 +38,6 @@ public class BackupData {
 		final Map<String, String> options = argumentsToMap(args);
 
 		sesameServerUrl = DEFAULT_SESAME_SERVER_URL;
-		sesameUsername = DEFAULT_SESAME_USERNAME;
-		sesamePassword = DEFAULT_SESAME_PASSWORD;
 
 		boolean configurationError = false;
 
