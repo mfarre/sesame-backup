@@ -1,4 +1,4 @@
-package com.insightng.platform.admin.backup;
+package com.insightng.backup;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
