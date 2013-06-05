@@ -88,15 +88,20 @@ public class SesameServerBackupCreator {
 	 * password for the server
 	 * 
 	 * @param sesameServerUrl
+	 *            the url of the Sesame server.
 	 * @param sesameUsername
+	 *            the username with which to authenticate. May be null.
 	 * @param sesamePassword
-	 * @return
+	 *            the password with which to authenticate. May be null.
+	 * @return a RepositoryManager for the given Sesame server.
 	 * @throws RepositoryException
 	 */
 	private RepositoryManager getRepositoryManager(final String sesameServerUrl, final String sesameUsername,
 			final String sesamePassword) throws RepositoryException {
 		RemoteRepositoryManager repManager = new RemoteRepositoryManager(sesameServerUrl);
-		repManager.setUsernameAndPassword(sesameUsername, sesamePassword);
+		if (sesameUsername != null && sesamePassword != null) {
+			repManager.setUsernameAndPassword(sesameUsername, sesamePassword);
+		}
 		repManager.initialize();
 		return repManager;
 	}
