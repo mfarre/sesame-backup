@@ -46,6 +46,7 @@ public class SesameRepositoryBackupCreator implements Runnable {
 	}
 
 	private boolean backupToFile() {
+		logger.info("backing up repository {} to file {}", repositoryId, backupFile.getAbsolutePath());
 		if (this.backupFile.exists()) {
 			logger.error("Unable to backup repository " + repositoryId + ": file "
 					+ this.backupFile.getAbsolutePath() + " already exists");
@@ -108,6 +109,8 @@ public class SesameRepositoryBackupCreator implements Runnable {
 	}
 
 	private void compressFile() {
+		logger.info("compressing file {}", repositoryId, backupFile.getAbsolutePath());
+
 		File gzipBackupFile = new File(backupFile.getParent(), backupFile.getName() + ".gz");
 
 		if (gzipBackupFile.exists()) {
