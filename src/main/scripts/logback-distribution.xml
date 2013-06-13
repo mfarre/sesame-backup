@@ -1,0 +1,23 @@
+<configuration>
+	<!-- <appender name="STDERR" class="ch.qos.logback.core.ConsoleAppender"> 
+		<encoder> <pattern> %d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n 
+		</pattern> </encoder> <target>System.err</target> </appender> -->
+	<appender name="FILE"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${AppDir}/log/main.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${AppDir}/log/main-%d{yyyy-MM-dd}.log
+			</fileNamePattern>
+		</rollingPolicy>
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n
+			</pattern>
+		</encoder>
+	</appender>
+
+	<logger name="com.insightng" level="DEBUG" />
+
+	<root level="WARN">
+		<appender-ref ref="FILE" />
+	</root>
+</configuration>

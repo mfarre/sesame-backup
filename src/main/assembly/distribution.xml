@@ -1,25 +1,33 @@
 <assembly>
-	<id>sesame-backup</id>
-
+	<id>bin</id>
 	<formats>
-		<format>jar</format>
+		<format>tar.gz</format>
 	</formats>
-
-	<includeBaseDirectory>false</includeBaseDirectory>
-
-	<dependencySets>
-		<dependencySet>
-			<outputFileNameMapping>${artifact.artifactId}-${artifact.version}${dashClassifier?}.${artifact.extension}
-			</outputFileNameMapping>
-			<useProjectArtifact>true</useProjectArtifact>
-			<outputDirectory>/</outputDirectory>
-		</dependencySet>
-		<dependencySet>
+	<files>
+		<file>
+			<source>src/main/scripts/sesame-backup.sh</source>
+			<outputDirectory>bin</outputDirectory>
+			<lineEnding>unix</lineEnding>
+			<fileMode>0755</fileMode>
+		</file>
+		<file>
+			<source>src/main/scripts/logback-distribution.xml</source>
+			<outputDirectory>conf</outputDirectory>
+			<destName>logback.xml</destName>
+		</file>
+	</files>
+	<fileSets>
+		<fileSet>
 			<includes>
-				<include>com.insightng:sesame-backup</include>
+				<include>README*</include>
+				<include>LICENSE*</include>
+				<include>NOTICE*</include>
 			</includes>
-			<unpack>true</unpack>
-			<outputDirectory>/</outputDirectory>
-		</dependencySet>
+		</fileSet>
+	</fileSets>
+	<dependencySets>
+	<dependencySet>
+		<outputDirectory>lib</outputDirectory>
+	</dependencySet>
 	</dependencySets>
 </assembly>
