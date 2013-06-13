@@ -1,7 +1,6 @@
 package com.insightng.backup;
 
 import java.io.File;
-import java.net.URLEncoder;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -72,16 +71,27 @@ public class SesameServerBackupCreator {
 					throw new RepositoryException("Unable to retrieve repository " + info.getId());
 				}
 
+				final File repoBackupDir = new File(backupDir, info.getId());
+				if (!repoBackupDir.exists()) {
+					repoBackupDir.mkdir();
+				} else if (!repoBackupDir.isDirectory()) {
+					logger.error("Repository backup dir {} is not a directory",
+							repoBackupDir.getAbsolutePath());
+				} else if (!repoBackupDir.canWrite()) {
+					logger.error("Unable to write to repository backup dir {}",
+							repoBackupDir.getAbsolutePath());
+				}
+
 				final Calendar cal = Calendar.getInstance();
-				final File backupFile = new File(backupDir, URLEncoder.encode(
-						dateFormat.format(cal.getTime()) + "_" + info.getId() + ".trig", "UTF-8"));
+				final File backupFile = new File(repoBackupDir, dateFormat.format(cal.getTime())
+						+ info.getId() + ".trig");
 
 				executor.execute(new SesameRepositoryBackupCreator(info.getId(), backupFile, repository));
 			} catch (Exception e) {
 				logger.error("Unable to backup repository " + info.getId(), e);
 			}
 		}
-		
+
 		executor.shutdown();
 	}
 
