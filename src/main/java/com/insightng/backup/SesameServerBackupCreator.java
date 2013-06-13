@@ -34,7 +34,7 @@ public class SesameServerBackupCreator {
 	private String sesameUsername;
 	private String sesamePassword;
 	private File backupDir;
-	private final DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
+	private final DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd-HHmmss");
 
 	public SesameServerBackupCreator(final String sesameServerUrl, final String sesameUsername,
 			final String sesamePassword, final File backupDir) {
@@ -74,13 +74,15 @@ public class SesameServerBackupCreator {
 
 				final Calendar cal = Calendar.getInstance();
 				final File backupFile = new File(backupDir, URLEncoder.encode(
-						info.getId() + "_" + dateFormat.format(cal.getTime()) + ".trig", "UTF-8"));
+						dateFormat.format(cal.getTime()) + "_" + info.getId() + ".trig", "UTF-8"));
 
 				executor.execute(new SesameRepositoryBackupCreator(info.getId(), backupFile, repository));
 			} catch (Exception e) {
 				logger.error("Unable to backup repository " + info.getId(), e);
 			}
 		}
+		
+		executor.shutdown();
 	}
 
 	/**

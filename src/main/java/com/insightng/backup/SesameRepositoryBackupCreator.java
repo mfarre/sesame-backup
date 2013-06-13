@@ -104,6 +104,13 @@ public class SesameRepositoryBackupCreator implements Runnable {
 				}
 			}
 		}
+		
+		if (!errorDuringBackup) {
+			logger.info("backup complete for repository {}", repositoryId);
+		}
+		else {
+			logger.warn("backup completed with errors for repository {}", repositoryId);
+		}
 
 		return !errorDuringBackup;
 	}
@@ -179,5 +186,7 @@ public class SesameRepositoryBackupCreator implements Runnable {
 				logger.warn("Unable to delete uncompressed backup file " + backupFile.getAbsolutePath());
 			}
 		}
+		logger.info("compression of {} complete.", backupFile.getAbsolutePath());
 	}
+	
 }
