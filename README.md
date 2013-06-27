@@ -13,10 +13,12 @@ The sesame-backup tool creates file backups of the contents every repository on 
 
 Usage:
 
+<pre>
  bin/sesame-backup.sh [options] 
-
+</pre>
 Options:
 
+<pre>
  --url=<server-url>
    URL of the Sesame Server to be backed up (default is http://localhost:8080/openrdf-sesame).
  --username=<server-username>
@@ -26,6 +28,7 @@ Options:
  --dir=<backup-directory>
    Directory that the backup data is to be written to.
  --help Displays help message.
+</pre>
 
 Developer instructions
 ----------------------
